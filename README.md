@@ -1,8 +1,7 @@
 
-# Node js CRUD application/Task Manager
+# Node js Weather forecast app
 
-This is a basic nodejs crud application where the user
-can create, update or delete data 
+Temperature and weather can be seen of the city that the user mentions 
 
 
 ## Tech Stack
@@ -23,10 +22,10 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  nodemon index.js
 ```
 
-Go to http://localhost:4000/ on your device.
-(Use Postman or thunderclient to post or delete the data)
+Go to http://localhost:3000/ on your device.
+
 
 
