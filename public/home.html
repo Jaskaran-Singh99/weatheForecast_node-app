@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Roboto+Condensed:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <h1 class="heading">Weather Forecast</h1>
+    <div class="box">
+            <div class="weatherIcon">
+                <i id="icon"></i>
+                <h2>{%icon%}</h2>
+            </div>
+
+            <div class="info">
+                <h2 class="location"><i class="fa-solid fa-street-view"></i>    {%city%}</h2>
+                <p id="date">Thr | August 25 | 1:20pm</p>
+                <h1 class="temp">{%temp%}&deg;</h1>
+                <div class="tempmin_max">Min {%tempMin%}&deg; | Max {%tempMax%}&deg;</div>
+               
+            </div>
+            <div class="wave" id="wave"></div>
+            
+    </div>
+    
+</body>
+ <script src="../index.js"></script>
+ <script >
+    const tempIcon = document.getElementById('icon')
+    const wave = document.getElementById('wave')
+    const tempStatus = '{%icon%}'
+  
+
+    if(tempStatus == 'Clouds'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color:#4C4C47;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#4C4C47;"></div>'
+    }
+    if(tempStatus == 'Clear'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-sun" style="color:#FF9505;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#E79420;"></div>'
+    }
+    if(tempStatus == 'Snow'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-snowflake" style="color:#016FB9;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#4197D0;"></div>'
+    }
+    if(tempStatus == 'Thunderbolt'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud-bolt" style="color:#353531;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#585851;"></div>'
+    }
+    if(tempStatus == 'Rain'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud-rain" style="color:#1794E7;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#54AAE4;"></div>'
+    }
+    if(tempStatus == 'Sunny'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-sun" style="color:#FF9505;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#E79420;"></div>'
+    }
+    if(tempStatus == 'Haze'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color:#76877D;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#7F8582;"></div>'
+    }
+    if(tempStatus == 'Mist'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color:#76877D;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#7F8582;"></div>'
+    }
+    if(tempStatus == 'Fog'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color:#76877D;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#7F8582;"></div>'
+    }
+    if(tempStatus == 'Tornado'){
+        tempIcon.innerHTML = '<i class="fa-solid fa-tornado" style="color:#110311;font-size:50px;"></i>'
+        wave.innerHTML = ' <div id="wave" style=" background-color:#570F57;"></div>'
+    }
+
+
+    // Clock and date
+    const timings = document.getElementById('date')
+    const getWeek = ()=>{
+        const date = new Date()
+        const week = date.getDay()
+        const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
+        
+        return weekDay[week]
+        
+    }
+    const getMonth = ()=>{
+        const date = new Date()
+        const month = date.getMonth();
+        const monthDay = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+        'November', 'December']
+
+        timings.innerHTML =  monthDay[month]
+
+        return  monthDay[month]
+    }
+    const getDate = ()=>{
+        const date= new Date()
+        const now = date.getDate()
+        return now
+    }
+
+    const getTime = ()=>{
+        const date = new Date()
+        let min = date.getMinutes();
+        let hrs  = date.getHours();
+        let meridian = 'AM'
+
+        if(hrs > 11){
+            meridian = 'PM';
+
+            if(hrs > 12){
+                hrs = hrs - 12
+            }
+        }
+        if(min < 10){
+            min = '0' + min
+        }
+        
+        return hrs + ':' + min + ' ' + meridian
+    }
+
+
+    timings.innerHTML = getWeek() + ' | ' + getMonth() + ' ' +  getDate() + ' | ' + getTime()
+     
+</script>
+</html>
